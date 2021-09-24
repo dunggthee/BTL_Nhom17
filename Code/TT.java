@@ -12,6 +12,7 @@ public class TT {
     public TT(String name, int tuoi, String gt) {
         this.name = name;
         this.tuoi = tuoi;
+        this.gt=gt;
        
     }
 
@@ -45,10 +46,10 @@ public class TT {
     }
     
     String Out(){
-        String s=
-                 "\n Tên: "+name
-                +"\n Tuổi: "+tuoi
-                +"\n Giới tính: "+gt;
+        String s="\n Thông tin bệnh nhân"+
+                 "\n Tên:"+name
+                +"\n Tuổi:"+tuoi
+                +"\n Giới tính:"+gt;
         return s;
     }
 }

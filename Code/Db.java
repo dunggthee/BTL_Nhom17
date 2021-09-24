@@ -52,6 +52,7 @@ public class Db extends javax.swing.JFrame {
         btn_back = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         ta_ttdb = new javax.swing.JTextArea();
+        btn_check = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +97,13 @@ public class Db extends javax.swing.JFrame {
         ta_ttdb.setRows(5);
         jScrollPane4.setViewportView(ta_ttdb);
 
+        btn_check.setText("Kiểm Tra Thông Tin");
+        btn_check.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_checkActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,8 +115,14 @@ public class Db extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(21, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(btn_check)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(47, 47, 47)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_exit)
@@ -145,7 +159,7 @@ public class Db extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btn_nn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,7 +170,9 @@ public class Db extends javax.swing.JFrame {
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(9, 9, 9)))
                                 .addComponent(btn_exit)
-                                .addGap(33, 33, 33)
+                                .addGap(1, 1, 1)
+                                .addComponent(btn_check)
+                                .addGap(15, 15, 15)
                                 .addComponent(btn_back))
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -187,7 +203,7 @@ public class Db extends javax.swing.JFrame {
 
     private void btn_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exitActionPerformed
         // TODO add your handling code here:
-       int choice= JOptionPane.showConfirmDialog(this,"Nếu Thoát Bạn Sẽ Chết!", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+       int choice= JOptionPane.showConfirmDialog(this,"Xác Nhận Thoát?", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION){
             System.exit(0);
         }
@@ -198,6 +214,17 @@ public class Db extends javax.swing.JFrame {
         Benh b=new Benh();
         b.setVisible(true);
     }//GEN-LAST:event_btn_backActionPerformed
+
+    private void btn_checkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_checkActionPerformed
+        // TODO add your handling code here:
+        String name,gt;
+        int tuoi;
+        tuoi=Benh.tuoi;
+        name=Benh.ten;
+        gt=Benh.gt;
+        TT t=new TT(name,tuoi,gt);
+        ta_ttdb.setText(t.Out());
+    }//GEN-LAST:event_btn_checkActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,6 +263,7 @@ public class Db extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_back;
+    private javax.swing.JButton btn_check;
     private javax.swing.JButton btn_exit;
     private javax.swing.JButton btn_nn;
     private javax.swing.JButton btn_pp;

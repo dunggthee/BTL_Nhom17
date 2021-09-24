@@ -22,7 +22,7 @@ public class Benh extends javax.swing.JFrame {
     public Benh() {
         initComponents();
         setLocationRelativeTo(null);
-        rd_nam.setSelected(true);
+        
         
     }
 
@@ -96,21 +96,18 @@ public class Benh extends javax.swing.JFrame {
                 .addGap(143, 143, 143)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lb_tuoi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(lb_name))
+                            .addComponent(lb_name)
+                            .addComponent(jLabel4))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tf_tuoi, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                                    .addComponent(tf_tuoi)
                                     .addComponent(tf_name))
                                 .addGap(59, 59, 59))
                             .addGroup(layout.createSequentialGroup()
@@ -118,12 +115,15 @@ public class Benh extends javax.swing.JFrame {
                                 .addComponent(rd_nam)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rd_nu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lb_tuoi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 237, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_ex)
                     .addComponent(btn_db)
-                    .addComponent(btn_dd)
-                    .addComponent(btn_ex))
-                .addGap(46, 46, 46))
+                    .addComponent(btn_dd))
+                .addGap(149, 149, 149))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,9 +139,9 @@ public class Benh extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btn_dd)
-                        .addGap(14, 14, 14)
+                        .addGap(37, 37, 37)
                         .addComponent(btn_ex)
-                        .addGap(74, 74, 74))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -153,7 +153,7 @@ public class Benh extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(rd_nam)
                                 .addComponent(rd_nu)))
-                        .addGap(109, 109, 109))))
+                        .addContainerGap(110, Short.MAX_VALUE))))
         );
 
         pack();
@@ -166,11 +166,12 @@ public class Benh extends javax.swing.JFrame {
         form.setVisible(true);
         ten=tf_name.getText();
         tuoi=Integer.parseInt(tf_tuoi.getText());
+        String gt="";
             if(rd_nam.isSelected()){
-                gt="Nam";
+                gt+="Nam";
             }
             if(rd_nu.isSelected()){
-                gt="Nữ";
+                gt+="Nữ";
             }
         
    
@@ -182,13 +183,13 @@ public class Benh extends javax.swing.JFrame {
         form.setVisible(true);
         ten=tf_name.getText();
         tuoi=Integer.parseInt(tf_tuoi.getText());
-        
             if(rd_nam.isSelected()){
-                gt="Nam";
+                gt+="Nam";
             }
             if(rd_nu.isSelected()){
-                gt="Nữ";
+                gt+="Nữ";
             }
+            
         
         
        
@@ -197,7 +198,7 @@ public class Benh extends javax.swing.JFrame {
 
     private void btn_exActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_exActionPerformed
         // TODO add your handling code here:
-        int choice= JOptionPane.showConfirmDialog(this,"Nếu Thoát Bạn Sẽ Chết!", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+        int choice= JOptionPane.showConfirmDialog(this,"Xác Nhận Thoát?", "Xác Nhận", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION){
             System.exit(0);
         }
