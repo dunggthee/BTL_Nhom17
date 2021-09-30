@@ -3,17 +3,25 @@ package b;
 
 public class Users {
     String tenDangnhap;
-    String matKhau;
+    String matKhau,vaiTro;
    
 
     public Users() {
     }
 
 
-    public Users(String tenDangnhap, String matKhau ) {
+    public Users(String tenDangnhap, String matKhau, String vaiTro ) {
         this.tenDangnhap = tenDangnhap;
         this.matKhau = matKhau;
      
+    }
+
+    public String getVaiTro() {
+        return vaiTro;
+    }
+
+    public void setVaiTro(String vaiTro) {
+        this.vaiTro = vaiTro;
     }
 
 

@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
  * @author 𝓛𝓲𝓼𝓪
  */
 public class login extends javax.swing.JFrame {
+    ArrayList<Users> listu=new ArrayList<>();
     private Connection conn;
 
 
@@ -33,16 +34,30 @@ public class login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Không được để trống Username");
             txt_user.requestFocus();
             return false;
-        } else if (!txt_user.getText().equals("admin") ) {
-            JOptionPane.showMessageDialog(this, "Quản trị viên mới có thể đăng nhập!");
-            txt_user.requestFocus();
-            return false;
         } else if (txt_pass.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không được để trống Password");
             txt_pass.requestFocus();
             return false;
         }
         return true;
+    }
+           public ArrayList<Users> getListUsers() {
+
+        String sql = "SELECT * FROM LOGIN";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Users s = new Users();
+                s.setTenDangnhap(rs.getString(1));
+                s.setMatKhau(rs.getString(2));
+
+                listu.add(s);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return listu;
     }
        
 
@@ -195,22 +210,32 @@ public class login extends javax.swing.JFrame {
             try {
                 String url="jdbc:sqlserver://localhost:1433;databaseName=benh;user=sa;password=213051";
                 conn = DriverManager.getConnection(url);
-                String sql = "SELECT * FROM LOGIN WHERE Username = ?";
+                String sql = "SELECT * FROM dbo.LOGIN WHERE Username = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, txt_user.getText());
                 ResultSet rs = ps.executeQuery();
+//                String role1=rs.getString("Role");
                 if(rs.next()){
-                    String role= rs.getString(1);
-                    if (role.equals("admin")) {
+                    String role= rs.getString("Role");
+                    if (role.equals("QTV")) {
                         JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công");
                         Quanli q=new Quanli();
                         q.setVisible(true);
                         this.setVisible(false);
-                    } else {
+                    }else if(role.equals("BN")){
                         JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công");
                         Benh b=new Benh();
                         b.setVisible(true);
                         this.setVisible(false);
+                    }else if(role.equals("")){
+                        JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công");
+                        Benh b=new Benh();
+                        b.setVisible(true);
+                        this.setVisible(false);
+                    }else{
+                       Benh b=new Benh();
+                        b.setVisible(true);
+                        this.setVisible(false); 
                     }
                 }
             } catch (Exception e) {
