@@ -1,4 +1,3 @@
-
 package b;
 
 import java.sql.*;
@@ -11,10 +10,9 @@ import javax.swing.JOptionPane;
  * @author 𝓛𝓲𝓼𝓪
  */
 public class login extends javax.swing.JFrame {
-    ArrayList<Users> listu=new ArrayList<>();
+
+    ArrayList<Users> listu = new ArrayList<>();
     private Connection conn;
-
-
 
     /**
      * Creates new form login
@@ -29,7 +27,8 @@ public class login extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-        public boolean check() {
+
+    public boolean check() {
         if (txt_user.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Không được để trống Username");
             txt_user.requestFocus();
@@ -41,7 +40,8 @@ public class login extends javax.swing.JFrame {
         }
         return true;
     }
-           public ArrayList<Users> getListUsers() {
+
+    public ArrayList<Users> getListUsers() {
 
         String sql = "SELECT * FROM LOGIN";
         try {
@@ -51,15 +51,15 @@ public class login extends javax.swing.JFrame {
                 Users s = new Users();
                 s.setTenDangnhap(rs.getString(1));
                 s.setMatKhau(rs.getString(2));
-
+                s.setVaiTro(rs.getString(3));
                 listu.add(s);
+
             }
         } catch (Exception e) {
             System.out.println(e);
         }
         return listu;
     }
-       
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -208,34 +208,33 @@ public class login extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (check()) {
             try {
-                String url="jdbc:sqlserver://localhost:1433;databaseName=benh;user=sa;password=213051";
+                String url = "jdbc:sqlserver://localhost:1433;databaseName=benh;user=sa;password=213051";
                 conn = DriverManager.getConnection(url);
                 String sql = "SELECT * FROM dbo.LOGIN WHERE Username = ?";
                 PreparedStatement ps = conn.prepareStatement(sql);
                 ps.setString(1, txt_user.getText());
                 ResultSet rs = ps.executeQuery();
-//                String role1=rs.getString("Role");
-                if(rs.next()){
-                    String role= rs.getString("Role");
+                if (rs.next()) {
+                    String role = rs.getString(3);
                     if (role.equals("QTV")) {
                         JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công");
-                        Quanli q=new Quanli();
+                        Quanli q = new Quanli();
                         q.setVisible(true);
                         this.setVisible(false);
-                    }else if(role.equals("BN")){
+                    } else if (role.equals("BN")) {
                         JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công");
-                        Benh b=new Benh();
+                        Benh b = new Benh();
                         b.setVisible(true);
                         this.setVisible(false);
-                    }else if(role.equals("")){
+                    } else if (role.equals("")) {
                         JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công");
-                        Benh b=new Benh();
+                        Benh b = new Benh();
                         b.setVisible(true);
                         this.setVisible(false);
-                    }else{
-                       Benh b=new Benh();
+                    } else {
+                        Benh b = new Benh();
                         b.setVisible(true);
-                        this.setVisible(false); 
+                        this.setVisible(false);
                     }
                 }
             } catch (Exception e) {
@@ -244,30 +243,31 @@ public class login extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Đăng nhập thất bại!");
         }
-                 
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        QLBN q=new QLBN();
+        QLBN q = new QLBN();
         q.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int choice= JOptionPane.showConfirmDialog(this,"Xác Nhận Thoát?", "Xác Nhận", JOptionPane.YES_NO_OPTION);
-        if (choice == JOptionPane.YES_OPTION){
+        int choice = JOptionPane.showConfirmDialog(this, "Xác Nhận Thoát?", "Xác Nhận", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Bài Tập Lớn Nhóm 17"
-                + "\nTác giả: Cao Thế Dũng"
-                + "\nTrịnh Trung Dũng"
-                + "\nNguyễn Quang Đức");
+        JOptionPane.showMessageDialog(this, "☻ Bài Tập Lớn Nhóm 17"
+                + "\n☺ Tác giả: "
+                + "\n○ Cao Thế Dũng"
+                + "\n○ Trịnh Trung Dũng"
+                + "\n○ Nguyễn Quang Đức ");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

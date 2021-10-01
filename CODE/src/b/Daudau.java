@@ -5,49 +5,49 @@ package b;
 public class Daudau {
     String NN(){
         String s="*Nguyên nhân bệnh Đau đầu:\n" +
-"\t+Đau đầu do các bệnh thần kinh\n" +
-"\t+Chấn thương sọ não.\n" +
+"+Đau đầu do các bệnh thần kinh\n" +
+"+Chấn thương sọ não.\n" +
 "\n" +
-"\t+Bệnh màng não - mạch máu não.\n" +
+"+Bệnh màng não - mạch máu não.\n" +
 "\n" +
-"\t+Hội chứng tăng áp lực nội sọ.\n" +
+"+Hội chứng tăng áp lực nội sọ.\n" +
 "\n" +
-"\t+Bệnh đau nửa đầu (Migraine).\n" +
+"+Bệnh đau nửa đầu (Migraine).\n" +
 "\n" +
-"\t+Rối loạn chức năng.\n" +
+"+Rối loạn chức năng.\n" +
 "\n" +
-"\t+Đau đầu do bệnh toàn thân\n" +
-"\t+Nhiễm khuẩn toàn thân cấp tính.\n" +
+"+Đau đầu do bệnh toàn thân\n" +
+"+Nhiễm khuẩn toàn thân cấp tính.\n" +
 "\n" +
-"\t+Nhiễm độc.\n" +
+"+Nhiễm độc.\n" +
 "\n" +
-"\t+Say nóng, say nắng.\n" +
+"+Say nóng, say nắng.\n" +
 "\n" +
-"\t+Do bệnh nội khoa\n" +
-"\t+Bệnh tim mạch.\n" +
+"+Do bệnh nội khoa\n" +
+"+Bệnh tim mạch.\n" +
 "\n" +
-"\t+Bệnh tiêu hoá.\n" +
+"+Bệnh tiêu hoá.\n" +
 "\n" +
-"\t+Bệnh thận món tính.\n" +
+"+Bệnh thận món tính.\n" +
 "\n" +
-"\t+Thiếu máu.\n" +
+"+Thiếu máu.\n" +
 "\n" +
-"\t+Rối loạn nội tiết.\n" +
+"+Rối loạn nội tiết.\n" +
 "\n" +
-"\t+Do các bệnh chuyên khoa khác: Mắt, Tai - mũi - họng.\n" +
-"\t+Căn nguyên tại phần mềm ngoài sọ và hộp sọ\n" +
+"+Do các bệnh chuyên khoa khác: Mắt, Tai - mũi - họng.\n" +
+"+Căn nguyên tại phần mềm ngoài sọ và hộp sọ\n" +
 "\n" +
-"\t+Viêm xương sọ, bệnh xương Paget.\n" +
+"+Viêm xương sọ, bệnh xương Paget.\n" +
 "\n" +
-"\t+Di căn ung thư vào xương sọ.\n" +
+"+Di căn ung thư vào xương sọ.\n" +
 "\n" +
-"\t+Biến dạng cột sống cổ.\n" +
+"+Biến dạng cột sống cổ.\n" +
 "\n" +
-"\t+Đau dây thần kinh chẩm lớn do thoái hoá khớp đốt sống cổ.\n" +
+"+Đau dây thần kinh chẩm lớn do thoái hoá khớp đốt sống cổ.\n" +
 "\n" +
-"\t+Thoát vị đĩa đệm cột sống cổ.\n" +
+"+Thoát vị đĩa đệm cột sống cổ.\n" +
 "\n" +
-"\t+Viêm động mạch thái dương còn gọi là bệnh Horton.";
+"+Viêm động mạch thái dương còn gọi là bệnh Horton.";
         return s;
     }
     String TC(){

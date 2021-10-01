@@ -3,13 +3,14 @@ package b;
 
 
 public class thongtin {
-    private String tuoi, name, phone, address,email;
+    private String tuoi, name, address,email;
+    private int phone;
     private boolean gender;
 
     public thongtin() {
     }
 
-    public thongtin(String tuoi, String name, String phone, String address, String email, boolean gender) {
+    public thongtin(String tuoi, String name, int phone, String address, String email, boolean gender) {
         this.tuoi = tuoi;
         this.name = name;
         this.phone = phone;
@@ -34,13 +35,15 @@ public class thongtin {
         this.name = name;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
+
+    
 
     public String getAddress() {
         return address;

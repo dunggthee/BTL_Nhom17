@@ -1,4 +1,3 @@
-
 package b;
 
 import java.sql.Connection;
@@ -11,14 +10,12 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class Quanli extends javax.swing.JFrame {
-    
+
     ArrayList<thongtin> list = new ArrayList<>();
     DefaultTableModel model;
     int index = 0;
     private Connection conn;
-
 
     public Quanli() {
         try {
@@ -28,10 +25,12 @@ public class Quanli extends javax.swing.JFrame {
             System.out.println(e);
         }
         initComponents();
+        setLocationRelativeTo(null);
         list = getListThongtin();
         model = (DefaultTableModel) tblQL.getModel();
         loadDbToTable();
     }
+
     public void loadDbToTable() {
         try {
             model.setRowCount(0);
@@ -40,7 +39,7 @@ public class Quanli extends javax.swing.JFrame {
             while (rs.next()) {
                 Vector row = new Vector();
                 row.add(rs.getString(1));
-                row.add(rs.getString(2));
+                row.add(rs.getInt(2));
                 row.add(rs.getString(3));
                 row.add(rs.getBoolean(4));
                 row.add(rs.getString(5));
@@ -52,16 +51,16 @@ public class Quanli extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
-    
-     public void fillTable() {
+
+    public void fillTable() {
         model.setRowCount(0);
         for (thongtin s : list) {
-            Object[] row = new Object[]{ s.getName(),s.getPhone(),s.getTuoi(), s.isGender(), s.getAddress(),s.getEmail()};
+            Object[] row = new Object[]{s.getName(), s.getPhone(), s.getTuoi(), s.isGender(), s.getAddress(), s.getEmail()};
             model.addRow(row);
         }
     }
 
-     public boolean deleteStudent() {
+    public boolean deleteThongtin() {
         try {
 
             String sql = "DELETE FROM thongtin WHERE HoTen = ?";
@@ -74,7 +73,7 @@ public class Quanli extends javax.swing.JFrame {
         return false;
     }
 
-      public ArrayList<thongtin> getListThongtin() {
+    public ArrayList<thongtin> getListThongtin() {
 
         String sql = "SELECT * FROM thongtin";
         try {
@@ -82,8 +81,8 @@ public class Quanli extends javax.swing.JFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 thongtin sv = new thongtin();
-                sv.setName(rs.getString(1)); 
-                sv.setPhone(rs.getString(2));
+                sv.setName(rs.getString(1));
+                sv.setPhone(rs.getInt(2));
                 sv.setTuoi(rs.getString(3));
                 sv.setGender(rs.getBoolean(4));
                 sv.setAddress(rs.getString(5));
@@ -95,9 +94,8 @@ public class Quanli extends javax.swing.JFrame {
         }
         return list;
     }
+    
 
-
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -240,24 +238,24 @@ public class Quanli extends javax.swing.JFrame {
         if (index == -1) {
             JOptionPane.showMessageDialog(rootPane, "Bạn chưa chọn hàng để xóa!");
         } else {
-            this.deleteStudent();
+            this.deleteThongtin();
             list.remove(index);
             loadDbToTable();
             JOptionPane.showMessageDialog(rootPane, "Xóa thành công!");
-        
-    }        
+
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        login l=new login();
+        login l = new login();
         l.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        login l=new login();
+        login l = new login();
         l.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed

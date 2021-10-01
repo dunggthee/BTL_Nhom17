@@ -16,10 +16,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class QLBN extends javax.swing.JFrame {
+
     ArrayList<Users> listu = new ArrayList<>();
     ArrayList<thongtin> list = new ArrayList<>();
     int index = 0;
     private Connection conn;
+
     public QLBN() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -33,10 +35,11 @@ public class QLBN extends javax.swing.JFrame {
         list = getListThongtin();
 
     }
+
     public boolean check() {
         if (txtName.getText().equals("") || txtTuoi.getText().equals("") | txtEmail.getText().equals("")
                 || txtPhone.getText().equals("") || txtDiachi.getText().equals("")
-                || txtUser.getText().equals("")|| txtPass.getText().equals("")|| txtVaitro.getText().equals("")) {
+                || txtUser.getText().equals("") || txtPass.getText().equals("") || txtVaitro.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Hãy nhập đủ dữ liệu sau đó ấn Lưu");
             return false;
         } else if (!rdoNam.isSelected() && !rdoNu.isSelected()) {
@@ -51,7 +54,7 @@ public class QLBN extends javax.swing.JFrame {
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, sv.getName());
-            ps.setString(2, sv.getPhone());
+            ps.setInt(2, sv.getPhone());
             ps.setString(3, sv.getTuoi());
             ps.setBoolean(4, sv.isGender());
             ps.setString(5, sv.getAddress());
@@ -62,7 +65,8 @@ public class QLBN extends javax.swing.JFrame {
         }
         return false;
     }
-     public ArrayList<Users> getListUsers() {
+
+    public ArrayList<Users> getListUsers() {
 
         String sql = "SELECT * FROM LOGIN";
         try {
@@ -80,12 +84,13 @@ public class QLBN extends javax.swing.JFrame {
         }
         return listu;
     }
-        public boolean saveUsers(Users u) {
+
+    public boolean saveUsers(Users u) {
         String sql = "INSERT INTO LOGIN VALUES(?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1,u.getTenDangnhap());
-            ps.setString(2,u.getMatKhau());
+            ps.setString(1, u.getTenDangnhap());
+            ps.setString(2, u.getMatKhau());
             ps.setString(3, u.getVaiTro());
             return ps.executeUpdate() > 0;
         } catch (Exception e) {
@@ -94,7 +99,6 @@ public class QLBN extends javax.swing.JFrame {
         return false;
     }
 
-    
     public ArrayList<thongtin> getListThongtin() {
 
         String sql = "SELECT * FROM thongtin";
@@ -103,8 +107,8 @@ public class QLBN extends javax.swing.JFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 thongtin sv = new thongtin();
-                sv.setName(rs.getString(1)); 
-                sv.setPhone(rs.getString(2));
+                sv.setName(rs.getString(1));
+                sv.setPhone(rs.getInt(2));
                 sv.setTuoi(rs.getString(3));
                 sv.setGender(rs.getBoolean(4));
                 sv.setAddress(rs.getString(5));
@@ -116,6 +120,7 @@ public class QLBN extends javax.swing.JFrame {
         }
         return list;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,6 +157,7 @@ public class QLBN extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         txtVaitro = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -221,6 +227,8 @@ public class QLBN extends javax.swing.JFrame {
         txtVaitro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/user-settings-icon (1).png"))); // NOI18N
         txtVaitro.setText("Vai trò:");
 
+        jLabel10.setText("@gmail.com");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -249,34 +257,32 @@ public class QLBN extends javax.swing.JFrame {
                                         .addGap(85, 85, 85)
                                         .addComponent(jButton1))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel8))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(75, 75, 75)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtVaitro)
-                                                    .addComponent(jLabel9)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(txtTuoi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(btnNew)
-                                                .addGap(17, 17, 17)))
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                            .addComponent(jLabel10)))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(txtVaitro))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(68, 68, 68)
+                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel8)
+                                                        .addComponent(btnNew)
+                                                        .addComponent(jLabel9)))))
+                                        .addGap(27, 27, 27)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(31, 31, 31)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(txtPass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                                                    .addComponent(txtUser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(180, 180, 180))
+                                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(195, 195, 195))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
@@ -315,7 +321,8 @@ public class QLBN extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -331,13 +338,16 @@ public class QLBN extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jScrollPane1)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtVaitro)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnNew)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txtVaitro)))
+                        .addGap(56, 56, 56)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnNew, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnSave))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -365,44 +375,51 @@ public class QLBN extends javax.swing.JFrame {
         txtPhone.setText(null);
         txtDiachi.setText(null);
         txtEmail.setText(null);
+        txtUser.setText(null);
+        txtPass.setText(null);
         buttonGroup1.clearSelection();
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+
         if (check()) {
-            thongtin sv = new thongtin();
-            sv.setName(txtName.getText());
-            sv.setPhone(txtPhone.getText());
-            sv.setTuoi(txtTuoi.getText());
-            boolean gt;
-            if (rdoNam.isSelected()) {
-                gt = true;
-            } else {
-                gt = false;
+
+            try {
+                thongtin sv = new thongtin();
+                sv.setName(txtName.getText());
+                Integer.parseInt(txtPhone.getText());
+                sv.setTuoi(txtTuoi.getText());
+                boolean gt;
+                if (rdoNam.isSelected()) {
+                    gt = true;
+                } else {
+                    gt = false;
+                }
+                sv.setGender(gt);
+                sv.setAddress(txtDiachi.getText());
+                Users u = new Users();
+                u.setTenDangnhap(txtUser.getText());
+                u.setMatKhau(txtPass.getText());
+                u.setVaiTro(txtVaitro.getText());
+                if (saveThongtin(sv) && saveUsers(u)) {
+                    JOptionPane.showMessageDialog(rootPane, "Lưu thành công!");
+                    list.add(sv);
+                    listu.add(u);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Lỗi");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(rootPane, "Nhập lại số ĐT");
+                // else then do blah
             }
-            sv.setGender(gt);
-            sv.setAddress(txtDiachi.getText());
-            Users u = new Users();
-            u.setTenDangnhap(txtUser.getText());
-            u.setMatKhau(txtPass.getText());
-            u.setVaiTro(txtVaitro.getText());
-            if (saveThongtin(sv)&& saveUsers(u)) {
-                JOptionPane.showMessageDialog(rootPane, "Lưu thành công!");
-                list.add(sv);
-                listu.add(u);
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Lỗi");
-            }
-        
-            
-            
-            }
+
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        login l=new login();
+        login l = new login();
         l.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -449,6 +466,7 @@ public class QLBN extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

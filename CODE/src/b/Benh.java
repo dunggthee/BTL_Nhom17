@@ -167,7 +167,8 @@ public class Benh extends javax.swing.JFrame {
     private void btn_ddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ddActionPerformed
         // TODO add your handling code here:
         dd form=new dd();
-        form.setVisible(true);   
+        form.setVisible(true);  
+        this.setVisible(false);
 
    
     }//GEN-LAST:event_btn_ddActionPerformed
@@ -176,6 +177,7 @@ public class Benh extends javax.swing.JFrame {
         // TODO add your handling code here:
         Db form=new Db();
         form.setVisible(true);
+        this.setVisible(false);
             
         
     
